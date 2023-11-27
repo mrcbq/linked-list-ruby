@@ -63,6 +63,19 @@ class LinkedList
     end
   end
 
+  def sum_values(index)
+    get_node(index).value.sum
+  end
+
+  def multiply_values(index)
+    get_node(index).value.reduce(:*)
+  end
+
+  def average_values(index)
+    sum = sum_values(index)
+    sum.to_f / get_node(index).value.size
+  end
+
   private
 
   def index_bad?(index)
@@ -70,12 +83,20 @@ class LinkedList
   end
 end
 
-list = LinkedList.new(0)
+list = LinkedList.new([0,1,2,3,4])
 list.add(1)
 list.add(2)
 list.add(3)
 list.get_node(3)
 list.addAt(0, -1)
 pp list.get(1)
-list.remove(5)
 pp list
+list.remove(1)
+list1 = LinkedList.new([1, 2, 3])
+list1.add([4, 5, 6])
+list1.add([7, 8, 9])
+
+puts list1.sum_values(0) # Output: 6
+puts list1.multiply_values(1) # Output: 120
+puts list1.average_values(2) # Output: 8.0
+# pp Symbol.all_symbols
