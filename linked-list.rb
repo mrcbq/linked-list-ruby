@@ -25,9 +25,6 @@ class LinkedList
   end
 
   def addAt(index, value) 
-    # if index < 0 || index > @size
-    #   raise IndexError, "Index out of bounds"
-    # end
     raise IndexError, "Index out of bounds" if index_bad?(index)
 
     if index == 0
@@ -54,8 +51,16 @@ class LinkedList
     get_node(index).value
   end
 
-  def remove
-
+  def remove(index)
+    raise IndexError, "Index out of bounds" if index_bad?(index)
+    if index == 0
+      @head = @head.next_node
+      @size -= 1
+    else
+      prev_node = get_node(index - 1)
+      prev_node.next_node = prev_node.next_node.next_node
+      @size -= 1
+    end
   end
 
   private
@@ -71,5 +76,6 @@ list.add(2)
 list.add(3)
 list.get_node(3)
 list.addAt(0, -1)
-pp list.get(0)
+pp list.get(1)
+list.remove(5)
 pp list
