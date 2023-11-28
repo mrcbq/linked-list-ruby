@@ -1,6 +1,5 @@
 class Node
   attr_accessor :value, :next_node
-
   def initialize(value = nil, next_node = nil)
     @value = value
     @next_node = next_node
@@ -26,7 +25,6 @@ class LinkedList
 
   def addAt(index, value) 
     raise IndexError, "Index out of bounds" if index_bad?(index)
-
     if index == 0
       @head = Node.new(value, @head)
       @size += 1
@@ -39,7 +37,6 @@ class LinkedList
 
   def get_node(index)
     raise IndexError, "Index out of bounds" if index_bad?(index)
-
     current_node = @head
     index.times do
       current_node = current_node.next_node
@@ -75,9 +72,7 @@ class LinkedList
     sum = sum_values(index)
     sum.to_f / get_node(index).value.size
   end
-
   private
-
   def index_bad?(index)
     index < 0 || index >= @size
   end
@@ -99,4 +94,3 @@ list1.add([7, 8, 9])
 puts list1.sum_values(0) # Output: 6
 puts list1.multiply_values(1) # Output: 120
 puts list1.average_values(2) # Output: 8.0
-# pp Symbol.all_symbols
